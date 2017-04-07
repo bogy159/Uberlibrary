@@ -1,0 +1,16 @@
+.idea
+.DS_Store
+Thumbs.db
+uberlibrary.iml
+
+webui/node_modules
+webui/.vscode/*
+webui/e2e/*.js
+webui/e2e/*.map
+webui/.DS_Store
+webui/Thumbs.db
+webui/webui.iml
+
+backend/backend.iml
+backend/target
+
