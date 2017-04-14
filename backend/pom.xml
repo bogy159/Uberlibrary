@@ -18,6 +18,7 @@
         <spring-boot.version>1.1.8.RELEASE</spring-boot.version>
         <spring.version>4.0.7.RELEASE</spring.version>
         <typesafe.version>1.2.1</typesafe.version>
+        <jackson.version>2.7.4</jackson.version>
     </properties>
 
     <dependencies>
@@ -70,6 +71,17 @@
             <groupId>com.typesafe</groupId>
             <artifactId>config</artifactId>
             <version>${typesafe.version}</version>
+        </dependency>
+
+        <!-- JACKSON OBJECT MAPPER -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency><groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
 
     </dependencies>

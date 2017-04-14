@@ -1,7 +1,6 @@
 {
-  "name": "webui",
-  "version": "0.0.0",
-  "license": "MIT",
+  "name": "uberlibrary",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
