@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+
+    <!-- spring boot defaults -->
+
+    <logger name="org.hibernate.validator.internal.util.Version" level="WARN"/>
+    <logger name="org.apache.coyote.http11.Http11NioProtocol" level="WARN"/>
+    <logger name="org.crsh.plugin" level="WARN"/>
+    <logger name="org.apache.tomcat.util.net.NioSelectorPool" level="WARN"/>
+    <logger name="org.apache.catalina.startup.DigesterFactory" level="ERROR"/>
+    <logger name="org.apache.catalina.util.LifecycleBase" level="ERROR"/>
+    <logger name="org.eclipse.jetty.util.component.AbstractLifeCycle" level="ERROR"/>
+    <logger name="org.thymeleaf" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+
+    <logger name="com.mangofactory.swagger" level="WARN"/>
+    <logger name="org.apache.catalina" level="WARN"/>
+
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="org.springframework.web.client.RestTemplate" level="ERROR"/>
+
+    <logger name="org.hibernate" level="WARN"/>
+    <!--<logger name="org.hibernate.tool.hbm2ddl.SchemaUpdate" level="INFO"/>-->
+    <logger name="org.hibernate.engine.jdbc.spi.SqlExceptionHelper" level="OFF"/>
+    <logger name="org.hibernate.engine.jdbc.batch.internal.BatchingBatch" level="OFF"/>
+
+    <logger name="org.quartz" level="WARN"/>
+
+    <logger name="at.tuwien.innovation.group7" level="DEBUG"/>
+
+</included>

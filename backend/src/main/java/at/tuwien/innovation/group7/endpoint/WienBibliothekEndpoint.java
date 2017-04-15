@@ -21,21 +21,21 @@ public class WienBibliothekEndpoint {
         this.restTemplate = restTemplate;
     }
 
-    public String getIndentifiers() {
+    public String getRecords() {
         return restTemplate.getForObject(
-                config.getString("wienBibliothek.listIdentifiers"),
+                config.getString("wienBibliothek.listRecords"),
                 String.class,
                 Collections.emptyMap()
         );
     }
 
 
-    public String getIndentifiers(String resumptionToken) {
+    public String getRecords(String resumptionToken) {
         Map<String, String> params = new HashMap<String, String>();
         params.put("resumptionToken", resumptionToken);
 
         return restTemplate.getForObject(
-                config.getString("wienBibliothek.listIdentifiersWithResumptionToken"),
+                config.getString("wienBibliothek.listRecordsWithResumptionToken"),
                 String.class,
                 params
         );
