@@ -4,6 +4,7 @@ Thumbs.db
 uberlibrary.iml
 
 webui/node_modules
+webui/bower_components
 webui/.vscode/*
 webui/e2e/*.js
 webui/e2e/*.map

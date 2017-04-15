@@ -1,0 +1,6 @@
+.img-responsive {
+    display: inline-block;
+    height: inherit;
+    width: auto;
+    padding-bottom: 3%;
+}
