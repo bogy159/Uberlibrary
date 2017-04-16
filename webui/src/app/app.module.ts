@@ -6,19 +6,23 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    NgbModule.forRoot()
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        NavbarComponent,
+        FooterComponent,
+        HomeComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        NgbModule.forRoot()
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
