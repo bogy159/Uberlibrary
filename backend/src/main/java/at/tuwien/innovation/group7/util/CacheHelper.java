@@ -1,7 +1,5 @@
 package at.tuwien.innovation.group7.util;
 
-import at.tuwien.innovation.group7.model.Header;
-import at.tuwien.innovation.group7.model.Metadata;
 import at.tuwien.innovation.group7.model.Record;
 import com.jayway.restassured.path.xml.XmlPath;
 
@@ -26,14 +24,23 @@ public class CacheHelper {
     }
 
     public static Record createRecord(XmlPath xmlPath, int i) throws ParseException {
-        return new Record(createHeader(xmlPath, i), createMetadata(xmlPath, i), Collections.emptyList());
-    }
-
-    private static Header createHeader(XmlPath xmlPath, int i) throws ParseException {
-        return new Header(
+        return new Record(
                 getIdentifier(xmlPath, i),
                 gateDate(xmlPath, i),
-                getSpecs(xmlPath, i)
+                getSpecs(xmlPath, i),
+                getStringFromMetadata(xmlPath, i, "title"),
+                getStringFromMetadata(xmlPath, i, "subject"),
+                getStringFromMetadata(xmlPath, i, "creator"),
+                getStringFromMetadata(xmlPath, i, "publisher"),
+                getStringFromMetadata(xmlPath, i, "date"),
+                getStringFromMetadata(xmlPath, i, "language"),
+                getStringFromMetadata(xmlPath, i, "rights"),
+                getListOfStringsFromMetadata(xmlPath, i, "coverage"),
+                getListOfStringsFromMetadata(xmlPath, i, "description"),
+                getListOfStringsFromMetadata(xmlPath, i, "type"),
+                getListOfStringsFromMetadata(xmlPath, i, "format"),
+                getListOfStringsFromMetadata(xmlPath, i, "identifier"),
+                Collections.emptyList()
         );
     }
 
@@ -55,23 +62,6 @@ public class CacheHelper {
         }
 
         return specs;
-    }
-
-    private static Metadata createMetadata(XmlPath xmlPath, int i) {
-        return new Metadata(
-                getStringFromMetadata(xmlPath, i, "title"),
-                getStringFromMetadata(xmlPath, i, "subject"),
-                getStringFromMetadata(xmlPath, i, "creator"),
-                getStringFromMetadata(xmlPath, i, "publisher"),
-                getStringFromMetadata(xmlPath, i, "date"),
-                getStringFromMetadata(xmlPath, i, "language"),
-                getStringFromMetadata(xmlPath, i, "rights"),
-                getListOfStringsFromMetadata(xmlPath, i, "coverage"),
-                getListOfStringsFromMetadata(xmlPath, i, "description"),
-                getListOfStringsFromMetadata(xmlPath, i, "type"),
-                getListOfStringsFromMetadata(xmlPath, i, "format"),
-                getListOfStringsFromMetadata(xmlPath, i, "identifier")
-        );
     }
 
     private static String getStringFromMetadata(XmlPath xmlPath, int i, String field) {
