@@ -5,3 +5,7 @@
     font-family: aqua;
     src: url('assets/fonts/aqua.ttf');
 }
+
+html {
+    font-family: aqua, serif;
+}

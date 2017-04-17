@@ -37,7 +37,7 @@ public class Cache {
         if (response != null && !response.isEmpty()) {
             XmlPath xmlPath = with(response);
             String resumptionToken = CacheHelper.getResumptionToken(xmlPath);
-            while (resumptionToken != null && !resumptionToken.isEmpty()) {
+            while (resumptionToken != null && !resumptionToken.isEmpty() && records.size() < 25) {
                 int length = CacheHelper.getLengthOfHeaders(xmlPath);
                 for (int i = 0; i < length; i++) {
                     records.add(CacheHelper.createRecord(xmlPath, i));

@@ -1,0 +1,14 @@
+.container {
+    padding-top: 5%;
+}
+
+.bookPreview {
+    padding-bottom: 10%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bookCover {
+    text-align: center;
+}

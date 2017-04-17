@@ -1,8 +1,10 @@
+import {Review} from "../review/review";
+
 export interface Record {
     identifier: string;
     datestamp: Date;
     specs: string[];
-    reviews: string[];
+    reviews: Review[];
     title: string;
     subject: string;
     creator: string;

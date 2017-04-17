@@ -1,9 +1,12 @@
 <div class="container">
-  <div class="row">
-    <ul>
-      <li *ngFor="let r of records">
-        <a>{{r.title}}</a>
-      </li>
-    </ul>
-  </div>
+    <div class="row">
+        <div class="row">
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 bookPreview" *ngFor="let r of records">
+                <div class="bookCover">
+                    <i class="fa fa-book fa-3x"></i>
+                </div>
+                <a>{{r.title}}</a>
+            </div>
+        </div>
+    </div>
 </div>

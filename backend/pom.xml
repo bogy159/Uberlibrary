@@ -16,10 +16,11 @@
         <start-class>at.tuwien.innovation.group7.Application</start-class>
 
         <spring-boot.version>1.1.8.RELEASE</spring-boot.version>
-        <spring.version>4.0.7.RELEASE</spring.version>
+        <spring.version>4.2.6.RELEASE</spring.version>
         <typesafe.version>1.2.1</typesafe.version>
         <jackson.version>2.7.4</jackson.version>
         <xml-path.version>2.9.0</xml-path.version>
+        <mongodb.version>2.14.3</mongodb.version>
     </properties>
 
     <dependencies>
@@ -57,6 +58,16 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
             <version>${spring.version}</version>
         </dependency>
@@ -86,6 +97,13 @@
             <groupId>com.jayway.restassured</groupId>
             <artifactId>xml-path</artifactId>
             <version>${xml-path.version}</version>
+        </dependency>
+
+        <!-- MONGO DB -->
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>${mongodb.version}</version>
         </dependency>
 
     </dependencies>
