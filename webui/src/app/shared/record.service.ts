@@ -9,7 +9,7 @@ export class RecordService {
 
     getRecords() {
         let records$ = this.http
-            .get('http://192.168.69.17:8080/record/all', {headers: this.getHeaders()})
+            .get('http://192.168.0.30:8080/record/all', {headers: this.getHeaders()})
             .map((response: Response) => this.mapRecords(response));
         console.log(records$);
         return records$;
