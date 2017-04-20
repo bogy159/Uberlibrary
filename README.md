@@ -13,5 +13,6 @@ You can run the *backend* from *Intellij* by simply starting the *SpringBoot App
 ## webui
 The **webui** is implemented in *JavaScript* and uses the framework *AngularJs*
 - install [node](https://nodejs.org/en/download/) on your machine
+- sudo *npm install -g angular-cli*
 - go into the folder and run `npm install`
 - run the *webui* with `ng serve -host 0.0.0.0`
