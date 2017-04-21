@@ -8,7 +8,9 @@ The **backend** is implemented in *Java* and has following jobs:
  - saving the *reviews*
  - make the *reviews* available for the *webui*
 
-You can run the *backend* from *Intellij* by simply starting the *SpringBoot Application* or by maven command `mvn exec:java -Dexec.mainClass="at.tuwien.innovation.group7.Application"`
+Preconditions:
+- install [mongodb](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+- run the *backend* from *Intellij* by simply starting the *SpringBoot Application* or by maven command `mvn clean compile exec:java -Dexec.mainClass="at.tuwien.innovation.group7.Application"`
 
 ## webui
 The **webui** is implemented in *JavaScript* and uses the framework *AngularJs*
