@@ -1,8 +1,7 @@
 package at.tuwien.innovation.group7.config;
 
-import com.mongodb.CommandResult;
-import com.mongodb.DB;
 import com.mongodb.MongoClient;
+import com.mongodb.client.MongoDatabase;
 import com.typesafe.config.Config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -19,18 +18,20 @@ public class MongoConfig {
     @Bean
     @Autowired
     public MongoClient mongoClient(Config config) throws UnknownHostException {
-        return new MongoClient(config.getString("mongodb.host"),
-                config.getInt("mongodb.port"));
+        return new MongoClient(
+                config.getString("mongodb.host"),
+                config.getInt("mongodb.port")
+        );
     }
 
     @Bean
     @Autowired
-    public DB mongoDatabase(Config config,  MongoClient mongoClient) {
-        DB db = mongoClient.getDB(config.getString("mongodb.database"));
+    public MongoDatabase mongoDatabase(Config config,  MongoClient mongoClient) {
+        MongoDatabase db = mongoClient.getDatabase(config.getString("mongodb.database"));
         for(;;) {
             try {
-                CommandResult stats = db.getStats();
-                LOG.info("Successfully connected to {}", stats.get("serverUsed"));
+                 db.getName();
+                LOG.info("Successfully connected to {}", db.getName());
                 return db;
             } catch (Exception e) {
                 LOG.warn("Unable to connect to mongo db '{}' at {}:{} because: {}",

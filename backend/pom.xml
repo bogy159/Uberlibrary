@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>backend</artifactId>
-    <name>Uberlibrary_Backend</name>
+    <name>Uberlibrary Backend</name>
 
     <properties>
         <start-class>at.tuwien.innovation.group7.Application</start-class>
@@ -20,7 +20,7 @@
         <typesafe.version>1.2.1</typesafe.version>
         <jackson.version>2.7.4</jackson.version>
         <xml-path.version>2.9.0</xml-path.version>
-        <mongodb.version>2.14.3</mongodb.version>
+        <mongodb.version>3.4.2</mongodb.version>
     </properties>
 
     <dependencies>

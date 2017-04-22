@@ -3,9 +3,11 @@ package at.tuwien.innovation.group7.repository;
 import at.tuwien.innovation.group7.model.Review;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.WriteConcern;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.IndexOptions;
+import com.mongodb.client.model.UpdateOptions;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,11 +18,11 @@ public class MongoRepository {
 
     private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(MongoRepository.class);
 
-    private final DB mongoDB;
+    private final MongoDatabase mongoDB;
     private final ObjectMapper objectMapper;
 
     @Autowired
-    public MongoRepository(DB mongoDB, ObjectMapper objectMapper) {
+    public MongoRepository(MongoDatabase mongoDB, ObjectMapper objectMapper) {
         this.mongoDB = mongoDB;
         this.objectMapper = objectMapper;
     }
@@ -30,9 +32,7 @@ public class MongoRepository {
         LOG.info("Initialization of mongoDB");
         for(;;) {
             try {
-                getReviewsCollection().createIndex(new BasicDBObject("identifier", 1),
-                        new BasicDBObject("name", "identifier_idx")
-                                .append("unique", true));
+                getReviewsCollection().createIndex(new BasicDBObject("identifier", 1), new IndexOptions().unique(true));
 
                 LOG.info("Initialization successfully completed!");
 
@@ -49,14 +49,18 @@ public class MongoRepository {
         }
     }
 
-    private DBCollection getReviewsCollection() {
+    private MongoCollection<Document> getReviewsCollection() {
         return mongoDB.getCollection("reviews");
     }
 
     public void saveReview(String identifier, Review review) {
         try {
-            getReviewsCollection().update(new BasicDBObject().append("identifier", identifier),
-                    new BasicDBObject("$set", objectMapper.writeValueAsString(review)), true, false, WriteConcern.ACKNOWLEDGED);
+            getReviewsCollection()
+                    .updateOne(
+                            new BasicDBObject().append("identifier", identifier),
+                            new BasicDBObject("$addToSet", new BasicDBObject("reviews", objectMapper.writeValueAsString(review))),
+                            new UpdateOptions().upsert(true)
+                    );
 
             LOG.debug("Object was successfully saved!");
         } catch (Exception e) {
