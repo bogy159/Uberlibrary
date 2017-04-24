@@ -15,8 +15,16 @@ export class HomeComponent implements OnInit {
   constructor(private recordService: RecordService) {}
 
   ngOnInit() {
-    this.recordService.getRecords().subscribe(res => this.records = res);
-    this.workingRecords = this.records;
+    this.recordService.getRecords().subscribe(res => {this.records = res; this.workingRecords = res});
+  }
+
+  filterRecords(string: String) {
+    let s = string.toLowerCase();
+    this.workingRecords = this.records.filter(
+      r => r.title.toLowerCase().indexOf(s) >= 0 ||
+      r.subject.toLowerCase().indexOf(s) >= 0 ||
+      r.creator.toLowerCase().indexOf(s) >= 0
+    );
   }
 
 }

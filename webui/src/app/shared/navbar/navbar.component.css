@@ -1,11 +1,21 @@
 nav {
     font-family: aqua, serif;
     font-size: medium;
+    background-color: #494E6B;
+    color: #C49F66;
+}
+
+.navbar-default .navbar-nav > li > a, span {
+  color: #C49F66;
+}
+
+.navbar-default .navbar-nav > li > a:hover, span:hover {
+  color: #FFFFFF;
 }
 
 .img-responsive {
     display: inline-block;
     height: inherit;
     width: auto;
-    padding-bottom: 3%;
+    padding-bottom: 7.5%;
 }

@@ -1,14 +1,36 @@
 <div class="container">
     <div class="row">
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 pull-right searchBoxWrapper">
+        <form action="" class="search-form">
+              <div class="form-group has-feedback">
+              <label for="search" class="sr-only">Search</label>
+              <input type="text" class="form-control" #search (keyup.enter)="filterRecords(search.value)" name="search" id="search" placeholder="Search">
+                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+            </div>
+          </form>
+      </div>
+    </div>
+    <div class="row">
         <div class="row">
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 bookPreview" *ngFor="let r of records">
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 bookPreview" *ngFor="let r of workingRecords">
                 <div class="bookCover">
-                    <i class="fa fa-book fa-3x"></i>
+                    <!-- <img src="../../assets/images/default_book_cover.jpg"> -->
+                    <i class="fa fa-book fa-5x" aria-hidden="true"></i>
+                </div> <br/> <br/>
+                <div class="bookDetails">
+                  <div>
+                    <span class="keyword">Title:</span>
+                    <span *ngIf="r.title.length != 0">{{r.title}}</span>
+                  </div>
+                  <div>
+                    <span class="keyword">Subject:</span>
+                    <span *ngIf="r.subject.length != 0">{{r.subject}}</span>
+                  </div>
+                  <div>
+                    <span class="keyword">Creator:</span>
+                    <span *ngIf="r.creator.length != 0">{{r.creator}}</span>
+                  </div>
                 </div>
-                <!-- <img src="../../assets/images/default_book_cover.jpg"> -->
-                <span>{{r.title}}</span> <br/>
-                <span>{{r.subject}}</span> <br/>
-                <span>{{r.creator}}</span> <br/>
             </div>
         </div>
     </div>
