@@ -1,0 +1,13 @@
+.custom-modal-container {
+    font-family: aqua, serif;
+}
+
+.custom-modal-header {
+    background-color: #494E6B;
+    color: #C49F66;
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+    margin-top: -15px;
+    margin-bottom: 40px;
+}

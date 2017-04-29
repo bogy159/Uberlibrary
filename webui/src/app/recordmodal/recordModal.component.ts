@@ -16,5 +16,6 @@ export class RecordModalComponent implements CloseGuard, ModalComponent<RecordMo
 
   constructor(public dialog: DialogRef<RecordModalContext>) {
     this.context = dialog.context;
+    dialog.setCloseGuard(this);
   }
 }
