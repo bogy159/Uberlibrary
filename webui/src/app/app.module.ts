@@ -8,18 +8,26 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { RecordModalComponent } from './recordmodal/recordModal.component';
+import {ModalModule} from "angular2-modal";
+import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
 
 @NgModule({
     declarations: [
         AppComponent,
         NavbarComponent,
         FooterComponent,
-        HomeComponent
+        HomeComponent,
+        RecordModalComponent
     ],
+    entryComponents: [
+        RecordModalComponent],
     imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
+        ModalModule.forRoot(),
+        BootstrapModalModule,
         NgbModule.forRoot()
     ],
     providers: [],

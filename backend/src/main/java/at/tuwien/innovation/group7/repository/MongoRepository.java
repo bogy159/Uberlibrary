@@ -3,6 +3,7 @@ package at.tuwien.innovation.group7.repository;
 import at.tuwien.innovation.group7.model.Review;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.BasicDBObject;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.IndexOptions;
@@ -12,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class MongoRepository {
@@ -66,5 +70,19 @@ public class MongoRepository {
         } catch (Exception e) {
             LOG.warn("Saving object into mongoDB failed!", e);
         }
+    }
+
+    public List<Review> getReviews(String identifier) throws IOException {
+        FindIterable<Document> result = getReviewsCollection().find(new BasicDBObject("identifier", identifier));
+        List<Review> reviews = new ArrayList<>();
+
+        for (Document doc : result) {
+            List<Document> r = (List<Document>)doc.get("reviews");
+            for (Document review : r) {
+                reviews.add(objectMapper.readValue(review.toJson(), Review.class));
+            }
+        }
+
+        return reviews;
     }
 }

@@ -2,17 +2,22 @@ import {Injectable} from "@angular/core";
 import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/Rx';
 import {Record} from "../record/record";
+import {Review} from "../review/review";
 
 @Injectable()
 export class RecordService {
     constructor(private http: Http) {}
 
     getRecords() {
-        let records$ = this.http
+        return this.http
             .get('http://develop:8080/record/all', {headers: this.getHeaders()})
             .map((response: Response) => this.mapRecords(response));
-        console.log(records$);
-        return records$;
+    }
+
+    getReviews(identifier: string) {
+        return this.http
+            .get('http://develop:8080/review/get/'.concat(identifier), {headers: this.getHeaders()})
+            .map((response: Response) => this.mapReviews(response))
     }
 
     private getHeaders() {
@@ -23,7 +28,6 @@ export class RecordService {
     }
 
     private mapRecords(response: Response) {
-        console.log("aqui");
         return response.json().map((r: any) => this.toRecord(r));
     }
 
@@ -46,5 +50,9 @@ export class RecordService {
             identifierList: r.identifierList,
             reviews: r.reviews
         });
+    }
+
+    private mapReviews(response: Response) {
+        return [];
     }
 }
