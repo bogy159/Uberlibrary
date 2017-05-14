@@ -10,13 +10,13 @@ export class RecordService {
 
     getRecords() {
         return this.http
-            .get('http://localhost:8080/record/all', {headers: this.getHeaders()})
+            .get('http://develop:8080/record/all', {headers: this.getHeaders()})
             .map((response: Response) => this.mapRecords(response));
     }
 
     getReviews(identifier: string) {
         return this.http
-            .get('http://localhost:8080/review/get/'.concat(identifier), {headers: this.getHeaders()})
+            .get('http://develop:8080/review/get/'.concat(identifier), {headers: this.getHeaders()})
             .map((response: Response) => this.mapReviews(response))
     }
 
