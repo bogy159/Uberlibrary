@@ -8,9 +8,17 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './home/home.component';
+
+import { AboutComponent } from './about/about.component';
+import { TeamComponent } from './team/team.component';
+import { NotFoundComponent } from './notfound.component';
+
+import { routing } from './app.routing';
+
 import { RecordModalComponent } from './recordmodal/recordModal.component';
 import {ModalModule} from "angular2-modal";
 import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
+
 
 @NgModule({
     declarations: [
@@ -18,6 +26,9 @@ import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
         NavbarComponent,
         FooterComponent,
         HomeComponent,
+        AboutComponent,
+        TeamComponent,
+        NotFoundComponent,
         RecordModalComponent
     ],
     entryComponents: [
@@ -28,7 +39,8 @@ import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
         HttpModule,
         ModalModule.forRoot(),
         BootstrapModalModule,
-        NgbModule.forRoot()
+        NgbModule.forRoot(),
+        routing
     ],
     providers: [],
     bootstrap: [AppComponent]

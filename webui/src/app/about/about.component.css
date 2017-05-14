@@ -1,0 +1,18 @@
+.about-container {
+  background: #FFFFFF;
+  box-shadow: 2px 3px 4px 0px rgba(0,0,0,0.10);
+  border-radius: 8px;
+  width: 66%;
+  height: auto;
+  margin: auto;
+}
+
+.about-info {
+  width: 90%;
+  height: auto;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  font-family: aqua, serif;
+  font-size: medium;
+}
