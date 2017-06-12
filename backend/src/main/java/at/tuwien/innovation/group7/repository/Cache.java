@@ -8,8 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.text.ParseException;
 import java.util.*;
 
@@ -42,7 +46,7 @@ public class Cache {
         if (response != null && !response.isEmpty()) {
             XmlPath xmlPath = with(response);
             String resumptionToken = CacheHelper.getResumptionToken(xmlPath);
-            while (resumptionToken != null && !resumptionToken.isEmpty() && records.size() < 50) {
+            while (resumptionToken != null && !resumptionToken.isEmpty() && records.size() < 100) {
                 int length = CacheHelper.getLengthOfHeaders(xmlPath);
                 for (int i = 0; i < length; i++) {
                     Record r = CacheHelper.createRecord(xmlPath, i);
@@ -91,7 +95,6 @@ public class Cache {
                     String w = wordWIter.next();
                     int wordIndex = globalWordsList.indexOf(w);
                     bookV[wordIndex] = 1;
-
                 }
                 // save to matrix
                 bookMatrix.put(ID, bookV);
@@ -106,6 +109,23 @@ public class Cache {
                 e.printStackTrace();
             }
             LOG.info("Writing Matrix to File FINISHED");
+
+            LOG.info("Initialising Recommender API");
+
+            //TODO call init
+            try{
+                URL pAPI = new URL("http://127.0.0.1:5000/");
+                URLConnection yc = pAPI.openConnection();
+                BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null)
+                    LOG.info(inputLine);
+                in.close();
+            }catch (Exception e){
+                LOG.error("NO Python API started :(");
+            }
+            LOG.info("Recommender API FINISHED");
         }
     }
 
@@ -121,7 +141,6 @@ public class Cache {
         while (wordIter.hasNext()){
             globalWordsSet.add(wordIter.next());
         }
-
     }
 
     private Collection<String> createWordVector(String in){
@@ -140,9 +159,9 @@ public class Cache {
         coll.removeIf(word -> word.length() < 3);
 
         //System.out.println(coll);
-
         return coll;
     }
+
 
     private void writeMatrixToFile() throws IOException {
         FileWriter fw = new FileWriter("matrixOut.txt");
@@ -160,11 +179,9 @@ public class Cache {
                     val = 1;
 
                 line += "," + val;
-
             }
             fw.write(line + System.lineSeparator());
         }
-
         fw.close();
     }
 }
