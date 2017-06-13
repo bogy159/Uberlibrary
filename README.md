@@ -26,13 +26,14 @@ The **webui** is implemented in *JavaScript* and uses the framework *AngularJs*
 ### Recommender API Service
 Recommender API
 
-1. install python scientific packeges https://ipython.org/install.html
+1. install python scientific packeges https://ipython.org/install.html 
++ install python flask microframework http://flask.pocoo.org/
 
 2. start the Recommender API with "./main.py" BEFORE starting the backend (backend needs it)
 
 3. you can start making calls from frontend or from backend
 
-API
+### API
 call: http://127.0.0.1:5000/get/RECORD_ID/BOOK_SIMILARITY
 RECORD_ID: the library book identifier
 BOOK_SIMILARITY (from 1 to 9)
@@ -44,7 +45,7 @@ Response:
 
 
 
-EXAMPLES
+## EXAMPLES
 
 call:http://127.0.0.1:5000/get/304133/2
 response:
