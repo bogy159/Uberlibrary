@@ -114,7 +114,7 @@ public class Cache {
 
             //TODO call init
             try{
-                URL pAPI = new URL("http://127.0.0.1:5000/");
+                URL pAPI = new URL("http://0.0.0.0:5000/");
                 URLConnection yc = pAPI.openConnection();
                 BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
                 String inputLine;
@@ -123,7 +123,7 @@ public class Cache {
                     LOG.info(inputLine);
                 in.close();
             }catch (Exception e){
-                LOG.error("NO Python API started :(");
+                LOG.error("NO Python API started :( at {}:{}", "0.0.0.0", "5000");
             }
             LOG.info("Recommender API FINISHED");
         }

@@ -12,7 +12,7 @@ The **backend** is implemented in *Java* and has following jobs:
 
 Preconditions:
 - install [mongodb](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
-- run the *backend* from *Intellij* by simply starting the *SpringBoot Application* or by maven command `mvn clean compile exec:java -Dexec.mainClass="at.tuwien.innovation.group7.Application"`
+    - run the *backend* from *Intellij* by simply starting the *SpringBoot Application* or by maven command `mvn clean compile exec:java -Dexec.mainClass="at.tuwien.innovation.group7.Application"`
 
 ## webui
 The **webui** is implemented in *JavaScript* and uses the framework *AngularJs*
@@ -28,6 +28,7 @@ Recommender API
 
 1. install python scientific packeges https://ipython.org/install.html 
 + install python flask microframework http://flask.pocoo.org/
++ install `flask_cors`
 
 2. start the Recommender API with "./main.py" BEFORE starting the backend (backend needs it)
 

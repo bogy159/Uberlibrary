@@ -2,6 +2,7 @@
 from __future__ import division
 
 from flask import Flask, g
+from flask_cors import CORS, cross_origin
 import numpy as np
 import pandas as pd
 from flask import jsonify
@@ -9,7 +10,7 @@ from scipy import spatial
 
 
 app = Flask(__name__)
-
+CORS(app)
 
 
 global similarityMatrix
@@ -23,8 +24,8 @@ def index():
         init()
         initialised = 1
     return "Hi! My name is <b>SexySmart</b>! Sup? <br><br> Try me out!<br/>" \
-           " e.g. http://127.0.0.1:5000/get/BookID/similarity(0-22) <br/> " \
-           "http://127.0.0.1:5000/get/304133/6"
+           " e.g. http://0.0.0.0:5000/get/BookID/similarity(0-22) <br/> " \
+           "http://0.0.0.0:5000/get/304133/6"
 
 
 @app.route("/init")
@@ -69,4 +70,4 @@ def get(identifier, treshold):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host = '0.0.0.0')

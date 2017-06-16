@@ -1,8 +1,9 @@
 import {Injectable} from "@angular/core";
-import { Http, Response, Headers } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import 'rxjs/Rx';
-import {Record} from "../record/record";
-import {Review} from "../review/review";
+import {Record} from "../../record/record";
+import {Review} from "../../review/review";
+import {HttpUtil} from "../util/http.util";
 
 @Injectable()
 export class RecordService {
@@ -10,21 +11,14 @@ export class RecordService {
 
     getRecords() {
         return this.http
-            .get('http://localhost:8080/record/all', {headers: this.getHeaders()})
+            .get('http://develop:8080/record/all', {headers: HttpUtil.getHeaders()})
             .map((response: Response) => this.mapRecords(response));
     }
 
     getReviews(identifier: string) {
         return this.http
-            .get('http://localhost:8080/review/get/'.concat(identifier), {headers: this.getHeaders()})
+            .get('http://develop:8080/review/get/'.concat(identifier), {headers: HttpUtil.getHeaders()})
             .map((response: Response) => this.mapReviews(response))
-    }
-
-    private getHeaders() {
-        let headers = new Headers();
-        headers.append('Accept', 'application/json');
-        headers.append('Access-Control-Allow-Origin', '*');
-        return headers;
     }
 
     private mapRecords(response: Response) {

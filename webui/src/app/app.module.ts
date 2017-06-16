@@ -16,11 +16,18 @@ import { NotFoundComponent } from './notfound.component';
 import { routing } from './app.routing';
 
 import { RecordModalComponent } from './recordmodal/recordModal.component';
-import {ModalModule} from "angular2-modal";
-import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
+import {BootstrapModalModule} from "ng2-bootstrap-modal";
 
 
 @NgModule({
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        NgbModule.forRoot(),
+        routing,
+        BootstrapModalModule
+    ],
     declarations: [
         AppComponent,
         NavbarComponent,
@@ -31,18 +38,7 @@ import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
         NotFoundComponent,
         RecordModalComponent
     ],
-    entryComponents: [
-        RecordModalComponent],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        HttpModule,
-        ModalModule.forRoot(),
-        BootstrapModalModule,
-        NgbModule.forRoot(),
-        routing
-    ],
-    providers: [],
+    entryComponents: [RecordModalComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

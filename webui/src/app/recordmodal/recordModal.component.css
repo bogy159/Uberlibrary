@@ -1,8 +1,17 @@
-.custom-modal-container {
+.modal {
+    display: block;
+    padding-left: 0;
+}
+
+.modal-backdrop {
+    height: 100%;
+}
+
+.modal-dialog {
     font-family: aqua, serif;
 }
 
-.custom-modal-header {
+.modal-header {
     background-color: #494E6B;
     color: #C49F66;
     -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
@@ -10,4 +19,70 @@
     box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
     margin-top: -15px;
     margin-bottom: 40px;
+}
+
+.info, h5 {
+    width: 92%;
+    display: block;
+    margin: auto;
+    word-wrap: break-word;
+}
+
+#recommendations {
+    width: 92%;
+    display: block;
+    margin: auto;
+    overflow: -moz-scrollbars-horizontal;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scrollbar-base-color:#ffeaff;
+}
+
+#recommendation {
+    display: inline-block;
+    float: none;
+    margin-left: 5px;
+    margin-right: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.row {
+    margin-bottom: 12px;
+    margin-top: 6px;
+}
+
+.bookCover {
+    text-align: center;
+}
+
+.show-when-hover {
+    display: none;
+}
+
+#recommendation:hover .show-when-hover {
+    display: block;
+    text-overflow: initial;
+    font-size: x-small;
+    overflow: visible;
+    white-space: normal;
+    color: #C49F66;
+    background-color: #494E6B;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+}
+
+#recommendationTitle {
+    font-size: x-small;
+}
+
+h5 {
+    color: #C49F66;
+}
+
+b {
+    color: #C49F66;
 }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {CloseGuard, DialogRef, ModalComponent} from "angular2-modal";
 import {Record} from "../record/record";
+import {DialogComponent, DialogService} from "ng2-bootstrap-modal";
 
-export class RecordModalContext {
-  public record: Record;
+export interface RecordModal {
+    record: Record;
+    recommendations: Record[];
 }
 
 @Component({
@@ -11,11 +12,15 @@ export class RecordModalContext {
   templateUrl: './recordModal.component.html',
   styleUrls: ['./recordModal.component.css']
 })
-export class RecordModalComponent implements CloseGuard, ModalComponent<RecordModalContext> {
-  context: RecordModalContext;
+export class RecordModalComponent extends DialogComponent<RecordModal, boolean> implements RecordModal {
+    record: Record;
+    recommendations: Record[];
 
-  constructor(public dialog: DialogRef<RecordModalContext>) {
-    this.context = dialog.context;
-    dialog.setCloseGuard(this);
-  }
+    constructor(dialogService: DialogService) {
+        super(dialogService);
+    }
+
+    datestamp() {
+        return new Date(this.record.datestamp);
+    }
 }

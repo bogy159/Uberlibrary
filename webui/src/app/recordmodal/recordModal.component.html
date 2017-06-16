@@ -1,17 +1,41 @@
-<div class="container-fluid custom-modal-container">
-    <div class="row custom-modal-header">
-        <div class="col-sm-12">
-            <h3>{{context.record.title}}</h3>
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-sm-12">
+                <h5>{{record.title}}</h5>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div><strong>Title:</strong> {{context.record.title}}</div>
-        <div><strong>Subject:</strong> {{context.record.subject}}</div>
-        <div><strong>Creator:</strong> {{context.record.creator}}</div>
-        <div><strong>Publisher:</strong> {{context.record.publisher}}</div>
-        <div><strong>Language:</strong> {{context.record.language}}</div>
-        <div><strong>Date:</strong> {{context.record.date}}</div>
-        <div><strong>Description:</strong> {{context.record.description}}</div>
-        <div><strong>Datestamp:</strong> {{context.record.datestamp}}</div>
+        <div class="modal-body">
+            <div class="row" id="record-information">
+                <div class="info"><b>Title:</b> {{record.title}}</div>
+                <div class="info"><b>Subject:</b> {{record.subject}}</div>
+                <div class="info"><b>Creator:</b> {{record.creator}}</div>
+                <div class="info"><b>Publisher:</b> {{record.publisher}}</div>
+                <div class="info"><b>Language:</b> {{record.language}}</div>
+                <div class="info"><b>Date:</b> {{record.date}}</div>
+                <div class="info"><b>Description:</b> {{record.description}}</div>
+                <div class="info"><b>Datestamp:</b> {{datestamp()}}</div>
+            </div>
+            <div class="row" id="first-rang-recommendations" *ngIf="recommendations != null && recommendations.length > 0">
+                <hr>
+                <div class="row">
+                    <h5>This could also interest you!</h5>
+                </div>
+                <div class="row" id="recommendations">
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="recommendation" *ngFor="let r of recommendations">
+                        <div class="bookCover">
+                            <i class="fa fa-book fa-2x" aria-hidden="true"></i>
+                        </div> <br/>
+                        <div class="bookDetails">
+                            <span *ngIf="r.title.length != 0" id="recommendationTitle">{{r.title}}</span>
+                        </div>
+                        <div class="show-when-hover">{{r.title}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" (click)="close()">Close</button>
+        </div>
     </div>
 </div>

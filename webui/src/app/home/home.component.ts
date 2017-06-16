@@ -1,30 +1,29 @@
 import {Component, OnInit, ViewContainerRef} from '@angular/core';
-import { RecordService } from "../shared/record.service";
+import { RecordService } from "../shared/service/record.service";
 import { Record } from "../record/record";
-import { ModalModule, OverlayRenderer, DOMOverlayRenderer, Overlay, overlayConfigFactory } from 'angular2-modal';
-import { Modal, BSModalContext, BootstrapModalModule } from "angular2-modal/plugins/bootstrap";
-import { RecordModalComponent } from "../recordmodal/recordModal.component";
-
-const MODAL_PROVIDERS = [
-    Modal,
-    Overlay,
-    { provide: OverlayRenderer, useClass: DOMOverlayRenderer }
-];
+import {DialogService} from "ng2-bootstrap-modal";
+import {RecordModalComponent} from "../recordmodal/recordModal.component";
+import {RecommenderService} from "../shared/service/recommender.service";
+import {UserService} from "../shared/service/user.service";
+import 'rxjs/Rx';
+import {isUndefined} from "util";
 
 @Component({
     selector: 'appHome',
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css'],
-    providers: [MODAL_PROVIDERS]
+    styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
 
     private records: Record[] = [];
     private workingRecords: Record[] = [];
 
-    constructor(private recordService: RecordService, vcRef: ViewContainerRef, public modal: Modal) {
-        modal.overlay.defaultViewContainer = vcRef;
-    }
+    constructor(
+        private recordService: RecordService,
+        private recommenderService: RecommenderService,
+        private userService: UserService,
+        private dialogService: DialogService
+    ) {}
 
     ngOnInit() {
         this.recordService.getRecords().subscribe(res => {this.records = res; this.workingRecords = res});
@@ -40,8 +39,20 @@ export class HomeComponent implements OnInit {
     }
 
     openRecordModal(r: Record) {
+        let recommendations: Record[] = [];
+        this.userService.addRecord(r.identifier);
         this.recordService.getReviews(r.identifier).subscribe(res => {r.reviews = res});
-        return this.modal.open(RecordModalComponent, overlayConfigFactory({record: r}));
+        this.recommenderService.getRecommendations(r.identifier).subscribe(res => {
+            for (let key in res) {
+                let record = this.records.filter(r => r.identifier === key).pop();
+                if (record != null && !isUndefined(record)) {
+                    recommendations.push(record);
+                }
+            }
+        });
+
+        console.log(recommendations);
+        this.dialogService.addDialog(RecordModalComponent, {record: r, recommendations: recommendations});
     }
 
 }
