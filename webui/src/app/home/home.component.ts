@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
 
     openRecordModal(r: Record) {
         let recommendations: Record[] = [];
-        this.userService.addRecord(r.identifier);
+        let secondRangRecommendations: Record[] = [];
         this.recordService.getReviews(r.identifier).subscribe(res => {r.reviews = res});
         this.recommenderService.getRecommendations(r.identifier).subscribe(res => {
             for (let key in res) {
@@ -51,8 +51,17 @@ export class HomeComponent implements OnInit {
             }
         });
 
-        console.log(recommendations);
-        this.dialogService.addDialog(RecordModalComponent, {record: r, recommendations: recommendations});
+        this.userService.clickedRecords.map(r => this.recommenderService.getRecommendations(r).subscribe(res => {
+            for (let key in res) {
+                let record = this.records.filter(r => r.identifier === key).pop();
+                if (record != null && !isUndefined(record)) {
+                    secondRangRecommendations.push(record);
+                }
+            }
+        }));
+
+        this.userService.addRecord(r.identifier);
+        this.dialogService.addDialog(RecordModalComponent, {record: r, recommendations: recommendations, secondRangRecommendations: secondRangRecommendations});
     }
 
 }

@@ -5,6 +5,7 @@ import {DialogComponent, DialogService} from "ng2-bootstrap-modal";
 export interface RecordModal {
     record: Record;
     recommendations: Record[];
+    secondRangRecommendations: Record[];
 }
 
 @Component({
@@ -15,6 +16,7 @@ export interface RecordModal {
 export class RecordModalComponent extends DialogComponent<RecordModal, boolean> implements RecordModal {
     record: Record;
     recommendations: Record[];
+    secondRangRecommendations: Record[];
 
     constructor(dialogService: DialogService) {
         super(dialogService);

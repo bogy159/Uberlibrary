@@ -1,17 +1,14 @@
 export class UserService {
 
-    private _clickedRecords: String[] = [];
+    private _clickedRecords: string[] = [];
 
 
     addRecord(recordId: string) {
         this._clickedRecords.push(recordId);
+        console.log(this._clickedRecords);
     }
 
-    get clickedRecords(): String[] {
+    get clickedRecords(): string[] {
         return this._clickedRecords;
-    }
-
-    set clickedRecords(value: String[]) {
-        this._clickedRecords = value;
     }
 }

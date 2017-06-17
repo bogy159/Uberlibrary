@@ -1,6 +1,8 @@
 .modal {
     display: block;
     padding-left: 0;
+    z-index: 150;
+    position: relative;
 }
 
 .modal-backdrop {
@@ -28,7 +30,7 @@
     word-wrap: break-word;
 }
 
-#recommendations {
+.recommendations {
     width: 92%;
     display: block;
     margin: auto;
@@ -39,7 +41,19 @@
     scrollbar-base-color:#ffeaff;
 }
 
-#recommendation {
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.recommendation {
     display: inline-block;
     float: none;
     margin-left: 5px;
@@ -62,7 +76,7 @@
     display: none;
 }
 
-#recommendation:hover .show-when-hover {
+.recommendation:hover .show-when-hover {
     display: block;
     text-overflow: initial;
     font-size: x-small;
@@ -73,9 +87,10 @@
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
+    z-index: 35000000000;
 }
 
-#recommendationTitle {
+.recommendationTitle {
     font-size: x-small;
 }
 

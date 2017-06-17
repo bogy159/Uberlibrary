@@ -21,13 +21,30 @@
                 <div class="row">
                     <h5>This could also interest you!</h5>
                 </div>
-                <div class="row" id="recommendations">
-                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="recommendation" *ngFor="let r of recommendations">
+                <div class="row recommendations">
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 recommendation" *ngFor="let r of recommendations">
                         <div class="bookCover">
                             <i class="fa fa-book fa-2x" aria-hidden="true"></i>
                         </div> <br/>
                         <div class="bookDetails">
-                            <span *ngIf="r.title.length != 0" id="recommendationTitle">{{r.title}}</span>
+                            <span *ngIf="r.title.length != 0" class="recommendationTitle">{{r.title}}</span>
+                        </div>
+                        <div class="show-when-hover">{{r.title}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="second-rang-recommendations" *ngIf="secondRangRecommendations != null && secondRangRecommendations.length > 0">
+                <hr>
+                <div class="row">
+                    <h5>More stuff only for you!</h5>
+                </div>
+                <div class="row recommendations">
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 recommendation" *ngFor="let r of secondRangRecommendations">
+                        <div class="bookCover">
+                            <i class="fa fa-book fa-2x" aria-hidden="true"></i>
+                        </div> <br/>
+                        <div class="bookDetails">
+                            <span *ngIf="r.title.length != 0" class="recommendationTitle">{{r.title}}</span>
                         </div>
                         <div class="show-when-hover">{{r.title}}</div>
                     </div>
