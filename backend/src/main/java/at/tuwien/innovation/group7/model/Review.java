@@ -1,5 +1,6 @@
 package at.tuwien.innovation.group7.model;
 
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,13 +13,13 @@ public class Review {
     private String user;
     private String sentimentTitle;
     private String sentimentBody;
-    private Integer rating;
+    private Integer rating;         // optional
     private enum ThreeWayClazz {
         NEGATIVE,
         POSITIVE,
         NEUTRAL,
     }
-    private ThreeWayClazz clazz;
+    private ThreeWayClazz clazz;    // optional
 
 
     @JsonCreator
