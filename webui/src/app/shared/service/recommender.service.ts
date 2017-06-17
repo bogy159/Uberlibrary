@@ -11,7 +11,7 @@ export class RecommenderService {
 
     getRecommendations(id: string) {
         return this.http
-            .get('http://develop:5000/get/'.concat(id).concat("/6"), {headers: HttpUtil.getHeaders()})
+            .get('http://localhost:5000/get/'.concat(id).concat("/6"), {headers: HttpUtil.getHeaders()})
             .map((response: Response) => response.json())
     }
 }
