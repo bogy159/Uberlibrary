@@ -6,6 +6,7 @@ export class HttpUtil {
         let headers = new Headers();
         headers.append('Accept', 'application/json');
         headers.append('Access-Control-Allow-Origin', '*');
+        headers.append('Content-Type', 'application/json');
         return headers;
     }
 }

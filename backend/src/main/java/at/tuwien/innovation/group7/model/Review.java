@@ -4,75 +4,57 @@ package at.tuwien.innovation.group7.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Review {
+public class Review implements Serializable {
 
-    private String reviewID;
-    private Date datestamp;
-    private String user;
-    private String sentimentTitle;
-    private String sentimentBody;
-    private Integer rating;         // optional
-    private enum ThreeWayClazz {
-        NEGATIVE,
-        POSITIVE,
-        NEUTRAL,
-    }
-    private ThreeWayClazz clazz;    // optional
+    private final String id;
+    private final Date datestamp;
+    private final String user;
+    private final String title;
+    private final String body;
+    private final Integer rating;
 
 
     @JsonCreator
     public Review(
-            @JsonProperty("reviewID") String reviewID,
-            @JsonProperty("datestamp") Date datestamp,
+            @JsonProperty("id") String id,
+            @JsonProperty("datestamp") long datestamp,
             @JsonProperty("user") String user,
-            @JsonProperty("sentimentTitle") String sentimentTitle,
-            @JsonProperty("sentimentBody") String sentimentBody,
-            @JsonProperty("rating") Integer rating,
-            @JsonProperty ("clazz") ThreeWayClazz clazz
+            @JsonProperty("title") String title,
+            @JsonProperty("body") String body,
+            @JsonProperty("rating") Integer rating
     ) {
-        this.reviewID = reviewID;
-        this.datestamp = datestamp;
+        this.id = id;
+        this.datestamp = new Date(datestamp);
         this.user = user;
-        this.sentimentTitle = sentimentBody;
-        this.sentimentBody = sentimentBody;
+        this.title = title;
+        this.body = body;
         this.rating = rating;
-        this.clazz = clazz;
     }
 
+    public String getId() {
+        return id;
+    }
 
-    public String getReviewId() { return reviewID; }
-
-    public Date getDatestamp() { return datestamp; }
+    public Date getDatestamp() {
+        return datestamp;
+    }
 
     public String getUser() {
         return user;
     }
 
-    public String getSentimentTitle() {
-        return sentimentTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public String getSentimentBody() { return sentimentBody; }
+    public String getBody() {
+        return body;
+    }
 
-    public Integer geRating() { return rating; }
-
-    public ThreeWayClazz getClazz() { return clazz; }
-
-    public void setReviewID(String reviewID) { this.reviewID = reviewID; }
-
-    public void setDatestamp(Date datestamp) { this.datestamp = datestamp; }
-
-    public void setUser(String user) { this.user = user; }
-
-    public void setSentiment(String sentimentTitle) { this.sentimentTitle = sentimentTitle; }
-
-    public void setSentimentBody(String sentimentBody) { this.sentimentBody = sentimentBody; }
-
-    public void setRating(Integer rating) { this.rating = rating; }
-
-    public void setClazz(ThreeWayClazz clazz) { this.clazz = clazz; }
-
-
+    public Integer getRating() {
+        return rating;
+    }
 }

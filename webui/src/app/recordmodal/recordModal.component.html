@@ -50,6 +50,64 @@
                     </div>
                 </div>
             </div>
+            <div class="row" id="reviews" *ngIf="record.reviews != null && record.reviews.length > 0">
+                <hr>
+                <div class="row">
+                    <h5>Reviews</h5>
+                </div>
+                <div class="row reviews">
+                    <div class="row review" *ngFor="let r of record.reviews">
+                        <label>{{r.rating}}/5</label> <label><b style="color: #C49F66">{{r.title}}</b></label> <br/>
+                        <label>by {{r.user}} on {{r.datestamp.toString()}}</label>
+                        <div id="reviewBody">{{r.body}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="!formActive && !reviewSent">
+                <hr>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 pull-left">
+                    <button class="btn btn-info" id="addButton" (click)="enableForm()">Write a Review</button>
+                </div>
+            </div>
+            <div *ngIf="formActive && !reviewSent">
+                <div class="row">
+                    <hr>
+                    <div class="row review-creator">
+                        <label for="rating">Rating:</label> <br/>
+                        <select id="rating" [(ngModel)]="ratingValue" #rating="ngModel" rating=0 style="width: 200px">
+                            <option disabled selected value>select a score</option>
+                            <option [value]="1">1</option>
+                            <option [value]="2">2</option>
+                            <option [value]="3">3</option>
+                            <option [value]="4">4</option>
+                            <option [value]="5">5</option>
+                        </select>
+                    </div>
+                    <div class="row review-creator">
+                        <label for="title">Title:</label> <br/>
+                        <input placeholder="Title" type="text" required minlength="5" maxlength="25" id="title" [(ngModel)]="titleValue" #title="ngModel" title="title" style="width: 200px">
+                    </div>
+                    <div class="row review-creator">
+                        <label for="body">Review:</label> <br/>
+                        <textarea placeholder="Review" required rows="7" cols="81" minlength="20" id="body" [(ngModel)]="bodyValue" #body="ngModel" body="body"></textarea>
+                    </div>
+                    <div class="row review-creator">
+                        <label for="name">Name:</label> <br/>
+                        <input placeholder="Name" type="text" required minlength="5" maxlength="25" id="name" [(ngModel)]="nameValue" #name="ngModel" name="name" style="width: 200px">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 pull-right">
+                        <button class="btn btn-info" id="submitButton" (click)="submit()">Submit Review</button>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!formActive && reviewSent">
+                <hr>
+                <div style="text-align: center; color: #C49F66">
+                    Thank you for submitting your review!
+                </div>
+            </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" (click)="close()">Close</button>

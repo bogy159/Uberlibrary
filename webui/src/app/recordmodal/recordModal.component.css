@@ -13,6 +13,12 @@
     font-family: aqua, serif;
 }
 
+.modal-body {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 .modal-header {
     background-color: #494E6B;
     color: #C49F66;
@@ -39,6 +45,27 @@
     overflow-y: hidden;
     white-space: nowrap;
     scrollbar-base-color:#ffeaff;
+}
+
+.reviews {
+    width: 92%;
+    display: block;
+    margin: auto;
+    overflow: -moz-scrollbars-vertical;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    white-space: nowrap;
+    scrollbar-base-color:#ffeaff;
+}
+
+.review {
+    margin-left: 10px;
+}
+
+.review-creator {
+    width: 92%;
+    display: block;
+    margin: auto;
 }
 
 ::-webkit-scrollbar {
@@ -100,4 +127,13 @@ h5 {
 
 b {
     color: #C49F66;
+}
+
+
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+    border-left: 5px solid #a94442; /* red */
 }

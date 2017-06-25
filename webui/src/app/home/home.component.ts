@@ -7,6 +7,7 @@ import {RecommenderService} from "../shared/service/recommender.service";
 import {UserService} from "../shared/service/user.service";
 import 'rxjs/Rx';
 import {isUndefined} from "util";
+import {Review} from "../review/review";
 
 @Component({
     selector: 'appHome',
@@ -41,7 +42,9 @@ export class HomeComponent implements OnInit {
     openRecordModal(r: Record) {
         let recommendations: Record[] = [];
         let secondRangRecommendations: Record[] = [];
-        this.recordService.getReviews(r.identifier).subscribe(res => {r.reviews = res});
+        let reviews: Review[] = [];
+        this.recordService.getReviews(r.identifier).subscribe(res => {r.reviews = res; reviews = res; console.log(res)});
+
         this.recommenderService.getRecommendations(r.identifier).subscribe(res => {
             for (let key in res) {
                 let record = this.records.filter(r => r.identifier === key).pop();
@@ -61,7 +64,7 @@ export class HomeComponent implements OnInit {
         }));
 
         this.userService.addRecord(r.identifier);
-        this.dialogService.addDialog(RecordModalComponent, {record: r, recommendations: recommendations, secondRangRecommendations: secondRangRecommendations});
+        this.dialogService.addDialog(RecordModalComponent, {record: r, recommendations: recommendations, secondRangRecommendations: secondRangRecommendations, reviews: reviews, recordService: this.recordService});
     }
 
 }

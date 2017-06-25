@@ -62,13 +62,13 @@ public class MongoRepository {
             getReviewsCollection()
                     .updateOne(
                             new BasicDBObject().append("identifier", identifier),
-                            new BasicDBObject("$addToSet", new BasicDBObject("reviews", objectMapper.writeValueAsString(review))),
+                            new BasicDBObject("$addToSet", new BasicDBObject("reviews", objectMapper.writeValueAsString(review)))   ,
                             new UpdateOptions().upsert(true)
                     );
 
-            LOG.debug("Object was successfully saved!");
+            LOG.info("Object was successfully saved!");
         } catch (Exception e) {
-            LOG.warn("Saving object into mongoDB failed!", e);
+            LOG.error("Saving object into mongoDB failed!", e);
         }
     }
 
@@ -77,12 +77,13 @@ public class MongoRepository {
         List<Review> reviews = new ArrayList<>();
 
         for (Document doc : result) {
-            List<Document> r = (List<Document>)doc.get("reviews");
-            for (Document review : r) {
-                reviews.add(objectMapper.readValue(review.toJson(), Review.class));
+            List<String> r = (List<String>)doc.get("reviews");
+            for (String review : r) {
+                reviews.add(objectMapper.readValue(review, Review.class));
             }
         }
 
+        LOG.info(reviews.toString());
         return reviews;
     }
 }
